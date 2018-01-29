@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Currency Converter</title>
+</head>
+<body>
+<h2></h2>
+<h1 align="center">Sign Up</h1>
+
+<form action="#" th:action="@{/register}" th:object="${user}" method="POST">
+    <table align="center">
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="text" th:field="*{email}"/>
+                <label th:if="${#fields.hasErrors('email')}" th:class="'error'" th:errors="*{email}">Email</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Date Of Birth</td>
+            <td>
+                <input type="date" th:field="*{dateOfBirth}"/>
+                <label th:if="${#fields.hasErrors('dateOfBirth')}" th:class="'error'" th:errors="*{dateOfBirth}">Date Of
+                    Birth</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="text" th:field="*{password}"/>
+                <label th:if="${#fields.hasErrors('password')}" th:class="'error'"
+                       th:errors="*{password}">Password</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>
+                <div>
+                    <select th:field="*{address.country}" id="dropCountry">
+                        <option th:each="country : ${countries}" th:value="${country}"
+                                th:text="${country}"></option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>
+                <input type="text" th:field="*{address.city}"/>
+                <label th:if="${#fields.hasErrors('address.city')}" th:class="'error'"
+                       th:errors="*{address.city}">City</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Post Code</td>
+            <td>
+                <input type="text" th:field="*{address.postCode}"/>
+                <label th:if="${#fields.hasErrors('address.postCode')}" th:class="'error'"
+                       th:errors="*{address.postCode}">Post Code</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Street</td>
+            <td>
+                <input type="text" th:field="*{address.street}"/>
+                <label th:if="${#fields.hasErrors('address.street')}" th:class="'error'" th:errors="*{address.street}">Street</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" th:value="Submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

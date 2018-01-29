@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Currency Converter</title>
+</head>
+<body>
+<div align="center" th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div align="center" th:if="${param.logout}">
+    You have been logged out.
+</div>
+<h2></h2>
+<h1 align="center">Sign In</h1>
+<form action="#" th:action="@{/login}" th:object="${user}" method="POST">
+    <table align="center">
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="text" th:field="*{email}" name="email"/>
+                <label th:if="${#fields.hasErrors('email')}" th:class="'error'">Email</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="text" th:field="*{password}" name="password"/>
+                <label th:if="${#fields.hasErrors('password')}" th:class="'error'">Password</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <a th:href="@{/register}" th:method="GET">Sign Up</a>
+            </td>
+            <td colspan="2">
+                <input type="submit" th:value="Submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

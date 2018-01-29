@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Currency Converter</title>
+</head>
+<body>
+<div align="center">
+    <table align="center">
+        <tr>
+            <td>Logged in user: <b th:inline="text" class="user"> [[${#httpServletRequest.remoteUser}]] </b></td>
+            <td>
+                <form th:action="@{/logout}" method="GET">
+                    <input type="submit" value="Logout"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<form th:object="${exchangeRate}">
+    <div align="center">
+        <div>
+            <table>
+                <tr>
+                    <td>From</td>
+                    <td>
+                        <div>
+                            <select th:field="*{fromCurrency}" id="dropFromCur">
+                                <option th:each="currency : ${currencies}" th:value="${currency}"
+                                        th:text="${currency}"></option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>To</td>
+                    <td>
+                        <div>
+                            <select th:field="*{toCurrency}" id="dropToCur">
+                                <option th:each="currency : ${currencies}" th:value="${currency}"
+                                        th:text="${currency}"></option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>Date</td>
+                    <td>
+                        <div>
+                            <input type="date" th:field="*{exchangeRateDate}"/>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="searchButton" name="searchButton" onclick="getExchangeRate()" type="button"
+                                th:text="Convert">Convert
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="resultsBlock">
+
+        </div>
+
+        <div th:unless="${#lists.isEmpty(exchangeRateList)}"
+             class="results-block">
+            <p>History</p>
+            <table>
+                <thead>
+                <tr>
+                    <th th:text="From"></th>
+                    <th th:text="To">To</th>
+                    <th th:text="Date">Date</th>
+                    <th th:text="Rate">Rate</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="eRate : ${exchangeRateList}">
+                    <td th:text="${eRate.fromCurrency}"></td>
+                    <td th:text="${eRate.toCurrency}"></td>
+                    <td th:text="${eRate.exchangeRateDate}"></td>
+                    <td th:text="${eRate.exchangeRate}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</form>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    function getExchangeRate() {
+        var url = '/search';
+
+        if ($('#dropFromCur option:selected').val() != '') {
+            url = url + '/' + $('#dropFromCur option:selected').val();
+        }
+        if ($('#dropToCur option:selected').val() != '') {
+            url = url + '/' + $('#dropToCur option:selected').val();
+        }
+        if ($('#exchangeRateDate').val() != '') {
+            url = url + '/' + $('#exchangeRateDate').val();
+        }
+        $("#resultsBlock").load(url);
+    }
+</script>
+
+<div th:fragment="resultsList" th:if="${searchedExchangeRate != null}" th:object="${searchedExchangeRate}"
+     class="results-block">
+    <p>Current</p>
+    <table>
+        <thead>
+        <tr>
+            <th th:text="From"></th>
+            <th th:text="To">To</th>
+            <th th:text="Date">Date</th>
+            <th th:text="Rate">Rate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${searchedExchangeRate.fromCurrency}"></td>
+            <td th:text="${searchedExchangeRate.toCurrency}"></td>
+            <td th:text="${searchedExchangeRate.exchangeRateDate}"></td>
+            <td th:text="${searchedExchangeRate.exchangeRate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
