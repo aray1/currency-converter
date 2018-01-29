@@ -14,18 +14,15 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.aray1.commonproblems.currencyconverter.entity.UserEntity;
 import com.aray1.commonproblems.currencyconverter.model.UserModel;
 import com.aray1.commonproblems.currencyconverter.repository.UserRepository;
-import com.aray1.commonproblems.currencyconverter.service.UserMapper;
+import com.aray1.commonproblems.currencyconverter.service.mapper.UserMapper;
 
 /**
  * Controller to handle user login and registration.
@@ -76,8 +73,8 @@ public class UserController {
             userRepository.save(userMapper.apply(user));
             modelAndView.addObject(USER, new UserModel());
             modelAndView.setViewName(LOGIN);
-
         }
+
         return modelAndView;
     }
 

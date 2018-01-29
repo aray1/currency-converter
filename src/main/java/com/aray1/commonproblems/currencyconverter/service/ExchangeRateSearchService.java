@@ -36,12 +36,12 @@ public class ExchangeRateSearchService {
         this.exchangeRateSearchMapper = exchangeRateSearchMapper;
     }
 
-    public List<ExchangeRateModel> getExchangeRateSearchesForUser(String userEmail) {
+    public List<ExchangeRateModel> getExchangeRateSearchesForUser(final String userEmail) {
         return exchangeRateSearchRepository.findByUserEntity(userEmail, new PageRequest(0, 10)).stream()
                 .map(exchangeRateSearchMapper).collect(Collectors.toList());
     }
 
-    public void saveExchangeRateSearch(ExchangeRateModel exchangeRateModel, String userEmail) {
+    public void saveExchangeRateSearch(final ExchangeRateModel exchangeRateModel, final String userEmail) {
         UserEntity userEntity = userRepository.findByEmail(userEmail);
         ExchangeRateSearchEntity exchangeRateSearchEntity = exchangeRateSearchEntityMapper.apply(exchangeRateModel);
         exchangeRateSearchEntity.setUserEntity(userEntity);

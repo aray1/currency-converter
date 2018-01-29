@@ -15,13 +15,13 @@ import com.aray1.commonproblems.currencyconverter.model.ExchangeRateModel;
 @Component("fixer")
 public class FixerCurrencyExchangeService implements CurrencyExchangeService {
 
-    @Value("${currency.exchange.api.path}")
-    private String currencyExchangePath;
-
+    private final String currencyExchangePath;
     private final RestTemplate restTemplate;
 
     @Autowired
-    public FixerCurrencyExchangeService(RestTemplateBuilder restTemplateBuilder) {
+    public FixerCurrencyExchangeService(@Value("${currency.exchange.api.path}") String currencyExchangePath,
+            RestTemplateBuilder restTemplateBuilder) {
+        this.currencyExchangePath = currencyExchangePath;
         this.restTemplate = restTemplateBuilder.build();
     }
 

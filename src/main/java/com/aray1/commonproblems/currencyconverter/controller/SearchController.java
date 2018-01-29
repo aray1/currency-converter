@@ -36,7 +36,7 @@ public class SearchController {
     }
 
     @GetMapping("/")
-    public RedirectView redirectWithUsingRedirectView(RedirectAttributes attributes) {
+    public RedirectView redirectToSearch() {
         return new RedirectView("/" + SEARCH);
     }
 

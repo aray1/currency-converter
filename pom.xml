@@ -25,6 +25,7 @@
         <spring-cloud.version>Edgware.SR1</spring-cloud.version>
         <spring.data.jpa.version>1.5.9.RELEASE</spring.data.jpa.version>
         <spring.oauth.version>2.2.0.RELEASE</spring.oauth.version>
+        <mockito-all.version>1.10.19</mockito-all.version>
     </properties>
 
     <dependencies>
@@ -81,6 +82,13 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito-all.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

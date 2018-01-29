@@ -24,7 +24,7 @@
         <tr>
             <td>Password</td>
             <td>
-                <input type="text" th:field="*{password}" name="password"/>
+                <input type="password" th:field="*{password}" name="password"/>
                 <label th:if="${#fields.hasErrors('password')}" th:class="'error'">Password</label>
             </td>
         </tr>

@@ -1,9 +1,10 @@
-package com.aray1.commonproblems.currencyconverter.service;
+package com.aray1.commonproblems.currencyconverter.service.mapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,14 @@ import com.aray1.commonproblems.currencyconverter.model.UserModel;
 @Service
 public class UserMapper implements Function<UserModel, UserEntity> {
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-    @Value("${date.format}")
-    private String dateFormat;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final String dateFormat;
+
+    @Autowired
+    public UserMapper(@Value("${date.format}") String dateFormat) {
+        this.dateFormat = dateFormat;
+        this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    }
 
     @Override
     public UserEntity apply(UserModel userModel) {
@@ -30,7 +36,7 @@ public class UserMapper implements Function<UserModel, UserEntity> {
         try {
             userEntity.setDateOfBirth(new SimpleDateFormat(dateFormat).parse(userModel.getDateOfBirth()));
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Incorrect Date");
         }
         userEntity.setPassword(bCryptPasswordEncoder.encode(userModel.getPassword()));
 

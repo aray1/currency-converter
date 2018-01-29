@@ -7,7 +7,7 @@
 <div align="center">
     <table align="center">
         <tr>
-            <td>Logged in user: <b th:inline="text" class="user"> [[${#httpServletRequest.remoteUser}]] </b></td>
+            <td>Hello: <b th:inline="text" class="user"> [[${#httpServletRequest.remoteUser}]] </b></td>
             <td>
                 <form th:action="@{/logout}" method="GET">
                     <input type="submit" value="Logout"/>

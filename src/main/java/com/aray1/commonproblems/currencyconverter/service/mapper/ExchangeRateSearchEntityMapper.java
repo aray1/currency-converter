@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,12 @@ import com.aray1.commonproblems.currencyconverter.model.ExchangeRateModel;
 @Service
 public class ExchangeRateSearchEntityMapper implements Function<ExchangeRateModel, ExchangeRateSearchEntity> {
 
-    @Value("${date.format}")
-    private String dateFormat;
+    private final String dateFormat;
+
+    @Autowired
+    public ExchangeRateSearchEntityMapper(@Value("${date.format}") String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
 
     @Override
     public ExchangeRateSearchEntity apply(ExchangeRateModel exchangeRateModel) {
@@ -29,7 +34,7 @@ public class ExchangeRateSearchEntityMapper implements Function<ExchangeRateMode
             exchangeRateSearchEntity.setExchangeRateDate(
                     new SimpleDateFormat(dateFormat).parse(exchangeRateModel.getExchangeRateDate()));
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Incorrect Date");
         }
         return exchangeRateSearchEntity;
     }
