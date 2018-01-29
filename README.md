@@ -1,5 +1,8 @@
 # currency-converter
-A GUI based application to convert currencies on a given date.
+- A GUI based application to convert currencies on a given date.
+- An user needs to login to convert currency.
+- User should register to login.
+- Shows last 10 searched records for user.
 
 ## Dev tools
 - Spring Boot
