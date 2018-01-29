@@ -8,3 +8,5 @@ deploy:
   app: rainy-hills
   on:
     repo: aray1/currency-converter
+before_install:
+  - chmod +x mvnw
