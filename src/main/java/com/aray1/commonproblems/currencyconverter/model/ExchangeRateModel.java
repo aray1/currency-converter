@@ -1,5 +1,8 @@
 package com.aray1.commonproblems.currencyconverter.model;
 
+/**
+ * Model class representing the exchange rate searched by the user.
+ */
 public class ExchangeRateModel {
     private String fromCurrency;
     private String toCurrency;

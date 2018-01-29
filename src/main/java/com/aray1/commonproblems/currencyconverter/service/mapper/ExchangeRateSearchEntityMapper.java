@@ -4,13 +4,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.aray1.commonproblems.currencyconverter.entity.ExchangeRateSearchEntity;
 import com.aray1.commonproblems.currencyconverter.model.ExchangeRateModel;
 
+/**
+ * Mapper to map a {@link ExchangeRateModel} to an {@link ExchangeRateSearchEntity}.
+ */
 @Service
 public class ExchangeRateSearchEntityMapper implements Function<ExchangeRateModel, ExchangeRateSearchEntity> {
+
+    @Value("${date.format}")
+    private String dateFormat;
+
     @Override
     public ExchangeRateSearchEntity apply(ExchangeRateModel exchangeRateModel) {
         ExchangeRateSearchEntity exchangeRateSearchEntity = new ExchangeRateSearchEntity();
@@ -19,10 +27,11 @@ public class ExchangeRateSearchEntityMapper implements Function<ExchangeRateMode
         exchangeRateSearchEntity.setToCurrency(exchangeRateModel.getToCurrency());
         try {
             exchangeRateSearchEntity.setExchangeRateDate(
-                    new SimpleDateFormat("YYYY-MM-dd").parse(exchangeRateModel.getExchangeRateDate()));
+                    new SimpleDateFormat(dateFormat).parse(exchangeRateModel.getExchangeRateDate()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return exchangeRateSearchEntity;
     }
+
 }

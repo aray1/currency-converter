@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Entity of user address.
+ */
 @Entity
 public class AddressEntity extends Auditable {
 

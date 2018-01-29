@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import com.aray1.commonproblems.currencyconverter.entity.UserEntity;
 import com.aray1.commonproblems.currencyconverter.repository.UserRepository;
 
+/**
+ * Service to handle user authentication.
+ */
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
 

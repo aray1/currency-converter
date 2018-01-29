@@ -12,6 +12,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+/**
+ * Mapped super class to help auditing.
+ */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class Auditable {

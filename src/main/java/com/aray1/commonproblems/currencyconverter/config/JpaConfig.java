@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.aray1.commonproblems.currencyconverter.entity.AuditAwareImpl;
 
+/**
+ * Configuration to assist in populating auditable fields.
+ */
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class JpaConfig {

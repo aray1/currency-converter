@@ -12,10 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Entity to store exchange rate search results for users.
+ */
 @Entity
-@NamedQuery(name = "ExchangeRateSearchEntity.findByUser",
-        query = "SELECT er FROM ExchangeRateSearchEntity er WHERE er.userEntity.email  = ?1")
-public class ExchangeRateSearchEntity {
+@NamedQuery(name = "ExchangeRateSearchEntity.findByUserEntity",
+        query = "SELECT er FROM ExchangeRateSearchEntity er WHERE er.userEntity.email  = :email ORDER BY er.creationDate DESC")
+public class ExchangeRateSearchEntity extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

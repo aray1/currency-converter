@@ -12,6 +12,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.aray1.commonproblems.currencyconverter.service.ApplicationUserDetailsService;
 
+/**
+ * Configuration for application security.Security is maintained via the email address of the user and the provided
+ * password.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)

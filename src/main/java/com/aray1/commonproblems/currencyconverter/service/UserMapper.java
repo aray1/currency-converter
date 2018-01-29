@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -13,19 +14,21 @@ import com.aray1.commonproblems.currencyconverter.model.AddressModel;
 import com.aray1.commonproblems.currencyconverter.model.UserModel;
 
 /**
- * Class to map an {@link com.aray1.commonproblems.currencyconverter.model.UserModel} to an User
+ * Class to map an {@link UserModel} to an {@link UserEntity}.
  */
 @Service
 public class UserMapper implements Function<UserModel, UserEntity> {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Value("${date.format}")
+    private String dateFormat;
 
     @Override
     public UserEntity apply(UserModel userModel) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userModel.getEmail());
         try {
-            userEntity.setDateOfBirth(new SimpleDateFormat("YYYY-MM-dd").parse(userModel.getDateOfBirth()));
+            userEntity.setDateOfBirth(new SimpleDateFormat(dateFormat).parse(userModel.getDateOfBirth()));
         } catch (ParseException e) {
             e.printStackTrace();
         }

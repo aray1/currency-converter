@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Entity to store user information.
+ */
 @Entity
 public class UserEntity extends Auditable {
 

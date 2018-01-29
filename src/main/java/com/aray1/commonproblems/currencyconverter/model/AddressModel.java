@@ -2,6 +2,9 @@ package com.aray1.commonproblems.currencyconverter.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Model class representing the user address.
+ */
 public class AddressModel {
 
     @NotEmpty(message = "Field is mandatory")
