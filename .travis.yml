@@ -5,7 +5,7 @@ deploy:
   provider: heroku
   api_key:
     secure: A2K+WxjJ9Ezrqbg+xcAC3olke0Ovig+1CBt42hn0XRylpkkDUCsX96tPfRKdnSwGi/NSTQoiwufL0xF8XC57BNTXCBPbt8EyXVK7fErvpO1Ua70c5mGlv7KFyBxCGLsiXObCuINv74Q/XcWz/0f7rgPZBDPhWm9bwtm8hlFcboPe5+yrjZeUUnl+Qp8dIglD+DUzuXtxKImqaQEr4z5oEVB/EPOCtgLXqGuzvmmyFajfVdE6674xgIsCY24P7V2cjd8OzBhc9Kb7xjuychkayNXHKTrY9WojMXGQXGcYNw05+SFiqUHMY+TsIqd2HJL5BvNT8PPZ9mCygtQ2Ui9qz6NNWG+8fBO55Ce3wDivMDYXd2IkL7kXKnRLfPptseTM8WlOJ7VCEEO/r1HkM3FQuTDVORWzzkaEEucGEw6TJHfE3oBZFwryNaXjVUsAPXd5ZpbGDDFlZtKGGvc1cBdUu3I36ugyr4UBr0QTNGyLbDNv6mZkC/Uwued+olgaqvQJpfrWC1Ft5S4wICgTDshs3+5eWsbSiYf7Mo5+MxompzLYrO7TSQL4k7uxfDef+ZM9C8052wHrID6ksT6N4Y/lESRv1k8SDXyicFgicEPtO1rJSkeoeE5sge7s/imvcZ+lWkOiMxkFzWuBCbE4AFKjbw0EVxPCz7R4wYQ0EgZwah8=
-  app: currency-converter
+  app: currency-converter-ap
   on:
     repo: aray1/currency-converter
 before_install:
