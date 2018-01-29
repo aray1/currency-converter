@@ -15,7 +15,7 @@
 - Deployment with Heroku [https://currency-converter-ap.herokuapp.com/].
 
 ## For local deployment
-- Executable spring boor jar.
+- Executable spring boot jar.
 
 ## External APIs
 - [http://fixer.io/] for currency conversion.
